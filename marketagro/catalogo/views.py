@@ -19,7 +19,7 @@ def catalogo(request):
         'catalogo.html'
     )
 
-def ingresar(request):
+def inicio_sesión(request):
     return render(
         request,
         'login.html'

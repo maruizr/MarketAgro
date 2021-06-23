@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import SET_NULL
 from django.urls import reverse
 import uuid
 
@@ -22,6 +23,10 @@ class Proveedor(models.Model):
     ubicacion = models.CharField(max_length=200)
     username = models.CharField(max_length=20, null=True)
     contraseña = models.CharField(max_length=50, null=True)
+    direccion = models.CharField(max_length=200, null=True)
+    comuna = models.ForeignKey('Comuna', on_delete=models.SET_NULL, null=True)
+    region = models.ForeignKey('Region', on_delete=models.SET_NULL, null=True)
+
 
     class Meta:
         ordering = ['nombre_tienda']
@@ -63,6 +68,7 @@ class Usuario(models.Model):
 class Comuna(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     comuna = models.CharField(max_length=50)
+    region = models.ForeignKey('Region', on_delete=models.SET_NULL, null=True)
 
     class Meta:
         ordering = ['comuna']
