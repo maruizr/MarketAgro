@@ -121,4 +121,38 @@ ALTER TABLE carro
 
 COMMIT;
 
+--INSERTAR FILAS
+--Insertar codigo de filas que se encuentra a continuación 
+https://gist.github.com/Darkegami/e3f3e4ee863e6ba144832adb25e24b58
+
+
+
+
 --INSERTAR PROCEDIMIENTOS ALMACENADOS PARA LAS FUNCIONES
+--Procedimiento agregar producto
+create or replace PROCEDURE p_agregar_producto(
+        v_id_prod NUMBER,
+        v_nom_prod VARCHAR2,
+        v_precio NUMBER,
+        v_cat VARCHAR2,
+        v_tipo_prod VARCHAR2,
+        v_prov VARCHAR2,
+        v_imagen BLOB,
+        v_salida out NUMBER
+        
+    )is
+    BEGIN
+        INSERT INTO producto VALUES (v_id_prod,v_nom_prod,v_precio,v_cat,v_tipo_prod,v_prov,v_imagen);
+        v_salida:=1;
+        COMMIT;
+    end;
+
+--Procedimiento listar productos
+create or replace PROCEDURE p_lista_productos(producto out SYS_REFCURSOR)
+    IS
+    BEGIN
+        open producto for SELECT  P.*, 
+            c.name
+    FROM producto P INNER JOIN categoria C 
+        ON (P.CATEGORIA_ID_CATE = c.ID_CATE);
+    END;
