@@ -8,7 +8,6 @@ Paleta:
 
 Fuente a utilizar: Montserrat
 */
-
 .back-black{
   background-color: rgb(0, 0, 0, 0.9);
 }
@@ -642,6 +641,7 @@ a:hover, a:focus {
     color: #F3753A;
   }
 }
+
 
 
 /* /RESPONSIVIDAD */

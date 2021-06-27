@@ -43,7 +43,7 @@ def lista_prod():
     cursor_dj = connection.cursor()
     cursor_ex = cursor_dj.connection.cursor() 
     cursor_out= cursor_dj.connection.cursor() 
-    cursor_ex.callproc('P_LISTA_PRODUCTO',[cursor_out])
+    cursor_ex.callproc('P_LISTA_PRODUCTOS',[cursor_out])
 
     producto = []
     for i in cursor_out:

@@ -1,6 +1,92 @@
 {% extends "index.html" %}
+{% block title %}
+    <title>Registrar producto</title>
 
+    {% load static %}
+    <link  href="{% static 'css/producto.css' %}" rel="stylesheet">
+    <script src="{% static 'js/prod.js' %}"></script>
+
+{% endblock %}
 {% block content %}
-
-
+{% load static %}
+<div id="registro" class="row">
+    <div class="col-md-12">
+        <div class="masthead container d-flex flex-column mt-2" style="max-width: 1140px;">
+            <br>
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3 class="title">REGISTRAR PRODUCTO</h3>
+                </div>
+            </div>
+            <hr>
+            <form id="" action="" method="POST" autocomplete="on" enctype="multipart/form-data" onsubmit="return validarFormProducto()">
+                {%csrf_token%}
+                <div class="form-group row" >
+                    <label for="id_prod" class="col-sm-3 col-form-label">Código del producto:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="id_prod" id="id_prod" placeholder="Código">
+                    </div>
+                    
+                </div>
+                <div class="form-group row" >
+                    <label for="nom_prod" class="col-sm-3 col-form-label">Nombre del producto:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="nom_prod" id="nom_prod" placeholder="Nombre">
+                    </div>
+                </div>
+                <div class="form-group row" >
+                    <label for="precio" class="col-sm-3 col-form-label">Precio del producto:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="precio" id="precio" maxlength="8" placeholder="Precio">
+                    </div>
+                </div>
+                <div class="form-group row" >
+                    <label for="categoria_id_cate" class="col-sm-3 col-form-label">Categoría del producto:</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="categoria_id_cate" name="categoria_id_cate">
+                            <option value="1">Alimenticio</option>
+                            <option value="2">Industrial</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row" >
+                    <label for="tipo_producto_id_tipo" class="col-sm-3 col-form-label">Tipo de producto:</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="tipo_producto_id_tipo" name="tipo_producto_id_tipo">
+                            <option value="1">Fruta</option>
+                            <option value="2">Verdura</option>
+                            <option value="3">Legumbre</option>
+                            <option value="4">Textil</option>
+                            <option value="5">Cereal</option>
+                            <option value="6">Planta</option>
+                        </select>
+                    </div>
+                </div>
+                <!--
+                <div class="form-group row" >
+                    <label for="proveedor_rut" class="col-sm-3 col-form-label">Proveedor del producto:</label>
+                    <div class="col-sm-8">
+                        {{form.proveedor_rut}}
+                    </div>
+                </div>-->
+                
+                <div class="form-group row" >
+                    <label for="imagen" class="col-sm-3 col-form-label">Precio del producto:</label>
+                    <div class="col-sm-8">
+                        <input type="file" class="form-control" name="imagen" id="imagen" maxlength="8" placeholder="Imagen">
+                    </div>
+                </div>
+                <br>
+                <div class="text-center">
+                        <a href="{% url 'catalogo' %}" class="btn-volver">Volver
+                            <i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+                        <button type="submit">Registrar
+                            <i class="fa fa-check"></i>
+                        </button>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

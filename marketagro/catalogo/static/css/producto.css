@@ -1,0 +1,39 @@
+h2, h3, h4, h5, h6 {
+    color: #2B2D42;
+    font-weight: 700;
+    margin: 0 0 10px;
+  }
+
+#registro button[type="submit"] {
+    background: #18d26e;
+    border: 0;
+    padding: 8px 30px;
+    color: #fff;
+    border-radius: 50px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+  
+#registro button[type="submit"]:hover {
+    background: #fff;
+    color: #18d26e;
+}
+
+#registro .btn-volver {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 32px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin: 10px;
+    color: #fff;
+    background: #18d26e;
+}
+  
+    #registro .btn-volver:hover {
+    background: #fff;
+    color: #18d26e;
+}
