@@ -22,7 +22,7 @@ def index(request):
 def catalogo(request):
     return render(
         request,
-        'catalogo.html'
+        'catalogo.html',
     )
 
 def inicio_sesión(request):
@@ -68,7 +68,7 @@ def create_prod(request):
             agregar_producto(id_prod, nom_prod, precio, categoria, tipo_prod, proveedor, imagen)
             data = {
                 'productos':lista_prod(),
-                "msj":"exi_create",
+                #"msj":"exi_create",
             }
             return redirect('catalogo')
     except:
@@ -77,7 +77,7 @@ def create_prod(request):
                 #"msj": "error_create",
 
             }
-        return redirect('form_doc')
+        return redirect('form_cr_prod')
 
 def agregar_producto(id_prod,nom_prod,precio,categoria,tipo_producto,proveedor,imagen):
     cursor_dj = connection.cursor()

@@ -10,7 +10,8 @@
 {% block content %}
 {% load static %}
 <div id="registro" class="row">
-    <div class="col-md-12">
+    <div class="col-sm-3"></div>
+        <div class="col-sm-6">
         <div class="masthead container d-flex flex-column mt-2" style="max-width: 1140px;">
             <br>
             <div class="col-md-12">
@@ -19,39 +20,29 @@
                 </div>
             </div>
             <hr>
-            <form id="" action="" method="POST" autocomplete="on" enctype="multipart/form-data" onsubmit="return validarFormProducto()">
+            <form id="" action="{% url 'create_prod' %}" name="registro" method="POST" autocomplete="on" enctype="multipart/form-data">
                 {%csrf_token%}
-                <div class="form-group row" >
-                    <label for="id_prod" class="col-sm-3 col-form-label">Código del producto:</label>
-                    <div class="col-sm-8">
+                <div class="form-group" >
+                    <label for="id_prod">Código del producto:</label>
                         <input type="text" class="form-control" name="id_prod" id="id_prod" placeholder="Código">
-                    </div>
-                    
                 </div>
-                <div class="form-group row" >
-                    <label for="nom_prod" class="col-sm-3 col-form-label">Nombre del producto:</label>
-                    <div class="col-sm-8">
+                <div class="form-group" >
+                    <label for="nom_prod">Nombre del producto:</label>
                         <input type="text" class="form-control" name="nom_prod" id="nom_prod" placeholder="Nombre">
-                    </div>
                 </div>
-                <div class="form-group row" >
-                    <label for="precio" class="col-sm-3 col-form-label">Precio del producto:</label>
-                    <div class="col-sm-8">
+                <div class="form-group" >
+                    <label for="precio">Precio del producto:</label>
                         <input type="text" class="form-control" name="precio" id="precio" maxlength="8" placeholder="Precio">
-                    </div>
                 </div>
-                <div class="form-group row" >
-                    <label for="categoria_id_cate" class="col-sm-3 col-form-label">Categoría del producto:</label>
-                    <div class="col-sm-8">
+                <div class="form-group" >
+                    <label for="categoria_id_cate">Categoría del producto:</label>
                         <select class="form-control" id="categoria_id_cate" name="categoria_id_cate">
                             <option value="1">Alimenticio</option>
                             <option value="2">Industrial</option>
                         </select>
-                    </div>
                 </div>
-                <div class="form-group row" >
-                    <label for="tipo_producto_id_tipo" class="col-sm-3 col-form-label">Tipo de producto:</label>
-                    <div class="col-sm-8">
+                <div class="form-group" >
+                    <label for="tipo_producto_id_tipo">Tipo de producto:</label>
                         <select class="form-control" id="tipo_producto_id_tipo" name="tipo_producto_id_tipo">
                             <option value="1">Fruta</option>
                             <option value="2">Verdura</option>
@@ -60,21 +51,14 @@
                             <option value="5">Cereal</option>
                             <option value="6">Planta</option>
                         </select>
-                    </div>
                 </div>
-                <!--
-                <div class="form-group row" >
-                    <label for="proveedor_rut" class="col-sm-3 col-form-label">Proveedor del producto:</label>
-                    <div class="col-sm-8">
+                <div class="form-group" >
+                    <label for="proveedor_rut">Proveedor del producto:</label>
                         {{form.proveedor_rut}}
-                    </div>
-                </div>-->
-                
-                <div class="form-group row" >
-                    <label for="imagen" class="col-sm-3 col-form-label">Precio del producto:</label>
-                    <div class="col-sm-8">
+                </div>
+                <div class="form-group" >
+                    <label for="imagen">Precio del producto:</label>
                         <input type="file" class="form-control" name="imagen" id="imagen" maxlength="8" placeholder="Imagen">
-                    </div>
                 </div>
                 <br>
                 <div class="text-center">
@@ -88,5 +72,6 @@
             </form>
         </div>
     </div>
+    <div class="col-sm-3"></div>
 </div>
 {% endblock %}
