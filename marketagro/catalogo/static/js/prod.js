@@ -40,7 +40,6 @@ $(function() {
 
         categoria_id_cate: "required",
         tipo_producto_id_tipo: "required",
-        imagen: "required"
   
       },
   
@@ -69,8 +68,6 @@ $(function() {
         categoria_id_cate: "Por favor, introduzca la categoria",
   
         tipo_producto_id_tipo: "Por favor, introduce un tipo de producto",
-
-        imagen: "Por favor, introduce una imagen",
   
       },
   

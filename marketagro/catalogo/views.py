@@ -22,7 +22,7 @@ def index(request):
 def catalogo(request):
     return render(
         request,
-        'catalogo.html',
+        'catalogo.html'
     )
 
 def inicio_sesión(request):
@@ -36,7 +36,7 @@ def form_cr_prod(request):
         'form': ProductoForm(),
         "prod": lista_prod(),
     }
-    return render(request, 'productos/producto-form.html',data)
+    return render(request, 'productos/producto-form.html', data)
 
 def lista_prod():
 

@@ -12,7 +12,7 @@ class Categoria(models.Model):
         db_table = 'categoria'
         
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 class Proveedor(models.Model):
     rut = models.CharField(primary_key=True, max_length=9)
@@ -30,7 +30,7 @@ class Proveedor(models.Model):
         db_table = 'proveedor'
 
     def __str__(self):
-        return self.rut
+        return str(self.rut)
 
 class Tipo_producto(models.Model):
     id_tipo = models.IntegerField(primary_key=True)
@@ -41,7 +41,7 @@ class Tipo_producto(models.Model):
         db_table = 'tipo_producto'
 
     def __str__(self):
-        return self.id_tipo
+        return str(self.id_tipo)
 
 class Producto(models.Model):
     id_prod = models.IntegerField(primary_key=True)
@@ -57,7 +57,7 @@ class Producto(models.Model):
         db_table = 'producto'
 
     def __str__(self):
-        return self.nom_prod
+        return str(self.nom_prod)
 
 class Region(models.Model):
     id_region = models.IntegerField(primary_key=True)
