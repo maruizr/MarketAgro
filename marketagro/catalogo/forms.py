@@ -44,3 +44,58 @@ class ProductoForm(forms.ModelForm):
         model = Producto
         fields = ('id_prod','nom_prod','precio','categoria_id_cate','tipo_producto_id_tipo','proveedor_rut','imagen')
 
+class UsuarioForm(forms.ModelForm):
+    rut = forms.IntegerField(label="Rut Usuario", required=True, max_value=9, widget=forms.NumberInput(
+        attrs={
+            'class':'form-control'
+        }
+    ))
+    nombre = forms.CharField(label="Nombre usuario", required=True, max_length=150, widget=forms.TextInput(
+        attrs={
+            'class':'form-control'
+        }
+    ))
+    apellido = forms.CharField(label="Apellido Paterno", required=True, max_length=150, widget=forms.TextInput(
+        attrs={
+            'class':'form-control'
+        }
+    ))
+    apellido_m = forms.CharField(label="Apellido Materno", required=True, max_length=150, widget=forms.TextInput(
+        attrs={
+            'class':'form-control'
+        }
+    ))
+    direccion = forms.CharField(label="Direccion", required=True, max_length=200, widget=forms.TextInput(
+        attrs={
+            'class':'form-control'
+        }
+    ))
+    region_id_region = forms.ModelChoiceField(queryset=Region.objects.all(), label="Region", required=False, widget=forms.Select(
+        attrs={
+            'class':'form-control'
+        }
+    ))
+    comuna_id_comu = forms.ModelChoiceField(queryset=Comuna.objects.all(), label="Comuna", required=False, widget=forms.Select(
+        attrs={
+            'class':'form-control'
+        }
+    ))
+    username = forms.CharField(label="Username", required=True, max_length=30, widget=forms.TextInput(
+        attrs={
+            'class':'form-control'
+        }
+    ))
+    contrasena = forms.IntegerField(label="Contrasena", required=True, max_value=20, widget=forms.NumberInput(
+        attrs={
+            'class':'form-control'
+        }
+    ))
+
+    class Meta:
+        model = Usuario
+        fields = ('rut', 'nombre', 'apellido','apellido_m','direccion','region_id_region','comuna_id_comu','username','contraseña')
+
+    
+
+    
+

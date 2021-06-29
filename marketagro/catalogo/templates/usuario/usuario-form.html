@@ -1,0 +1,81 @@
+{% extends "index.html" %}
+{% block title %}
+    <title>Registrar producto</title>
+
+    {% load static %}
+    <link  href="{% static 'css/producto.css' %}" rel="stylesheet">
+    <script src="{% static 'js/prod.js' %}"></script>
+
+{% endblock %}
+{% block content %}
+{% load static %}
+<div id="registro" class="row">
+    <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+        <div class="masthead container d-flex flex-column mt-2" style="max-width: 1140px;">
+            <br>
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3 class="title">REGISTRAR PRODUCTO</h3>
+                </div>
+            </div>
+            <hr>
+            <form id="" action="{% url 'create_usuario' %}" name="registro" method="POST" autocomplete="on" enctype="multipart/form-data">
+                {%csrf_token%}
+                <div class="form-group" >
+                    <label for="rut">Rut:</label>
+                        <input type="text" class="form-control" name="rut" id="rut" placeholder="Rut" maxlength="9">
+                </div>
+                <div class="form-group" >
+                    <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre">
+                </div>
+                <div class="form-group" >
+                    <label for="apellido">Apellido Paterno:</label>
+                        <input type="text" class="form-control" name="apellido" id="apellido" maxlength="8" placeholder="Apellido Paterno">
+                </div>
+                <div class="form-group" >
+                    <label for="apellido_m">Apellido Materno:</label>
+                        <input type="text" class="form-control" name="apellido_m" id="apellido_m" maxlength="8" placeholder="Apellido Materno">
+                </div>
+                <div class="form-group" >
+                    <label for="direccion">Direccion:</label>
+                        <input type="text" class="form-control" name="direccion" id="direccion" maxlength="8" placeholder="Direccion">
+                </div>
+                <div class="form-group" >
+                    <label for="region_id_region">Region:</label>
+                        {{form.region_id_region}}
+                    
+                </div>
+                <div class="form-group" >
+                    <label for="tipo_producto_id_tipo">Comuna:</label>
+                        {{form.comuna_id_comu}}
+                        
+                </div>
+                <div class="form-group" >
+                    <label for="proveedor_rut">Proveedor del producto:</label>
+                        {{form.proveedor_rut}}
+                </div>
+                <div class="form-group" >
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" name="username" id="username" maxlength="8" placeholder="Username">
+                </div>
+                <div class="form-group" >
+                    <label for="username">Contraseña:</label>
+                    <input type="password" class="form-control" name="contrasena" id="rut" placeholder="Contraseña" maxlength="20">
+                </div>
+                <br>
+                <div class="text-center">
+                        <a href="{% url 'catalogo' %}" class="btn-volver">Volver
+                            <i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+                        <button type="submit">Registrar
+                            <i class="fa fa-check"></i>
+                        </button>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-3"></div>
+</div>
+{% endblock %}

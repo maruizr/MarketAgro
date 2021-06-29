@@ -1,7 +1,7 @@
 import django
 from django.shortcuts import render, redirect, get_object_or_404
 from . models import Categoria, Producto, Tipo_producto, Proveedor, Usuario, Comuna, Region
-from . forms import ProductoForm
+from . forms import ProductoForm, UsuarioForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views import generic
@@ -13,6 +13,12 @@ from django.http import HttpResponse
 
 # Create your views here.
 
+def registro(request):
+    
+    return render(
+        request,
+        'usuario/usuario-form.html'
+    )
 def index(request):
     return render(
         request,
@@ -84,4 +90,53 @@ def agregar_producto(id_prod,nom_prod,precio,categoria,tipo_producto,proveedor,i
     cursor_ex = cursor_dj.connection.cursor() 
     salida = cursor_ex.var(cx_Oracle.NUMBER)
     cursor_ex.callproc('P_AGREGAR_PRODUCTO',[id_prod,nom_prod,precio,categoria,tipo_producto,proveedor,imagen,salida])
+
+def agregar_usuario(rut,nombre,apellido,apellido_m,direccion,id_region,id_comu,username,contrasena):
+    cursor_dj = connection.cursor()
+    cursor_ex = cursor_dj.connection.cursor() 
+    salida = cursor_ex.var(cx_Oracle.NUMBER)
+    cursor_ex.callproc('P_AGREGAR_USUARIO',[rut,nombre,apellido,apellido_m,direccion,id_region,id_comu,username,contrasena])
+def lista_usuario():
+
+    cursor_dj = connection.cursor()
+    cursor_ex = cursor_dj.connection.cursor() 
+    cursor_out= cursor_dj.connection.cursor() 
+    cursor_ex.callproc('P_LISTA_USUARIOS',[cursor_out])
+
+    usuario = []
+    for i in cursor_out:
+        usuario.append(        {
+            'data':i,
+            'imagen':str(base64.b64encode(i[9].read()),'utf-8')
+        })
+
+    return usuario 
+def create_usuario(request):
+    try:
+        if request.method == 'POST':
+            rut = request.POST.get('rut','')
+            nombre = request.POST.get('nombre','')
+            apellido = request.POST.get('apellido','')
+            apellido_m = request.POST.get('apellido_m','')
+            direccion = request.POST.get('direccion','')
+            id_region = request.POST.get('region_id_region','')
+            id_comu = request.POST.get('comuna_id_comu','')
+            username = request.POST.get('username','')
+            contrasena = request.POST.get('contrasena','')
+            
+
+            agregar_usuario(rut,nombre,apellido,apellido_m,direccion,id_region,id_comu,username,contrasena)
+            data = {
+                'usuarios':lista_usuario(),
+                #"msj":"exi_create",
+            }
+            return redirect('catalogo')
+    except:
+        data = {
+                'usuarios':lista_usuario(),
+                #"msj": "error_create",
+
+            }
+        return redirect('registro')
+
 

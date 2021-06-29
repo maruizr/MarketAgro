@@ -76,6 +76,7 @@ CREATE TABLE usuario(
     contraseña  NUMBER(20) NOT NULL
 );
 
+
 ALTER TABLE usuario ADD CONSTRAINT usuario_pk PRIMARY KEY (rut);
 
 CREATE TABLE carro(
@@ -522,3 +523,30 @@ create or replace PROCEDURE p_lista_productos(producto out SYS_REFCURSOR)
     FROM producto P INNER JOIN categoria C 
         ON (P.CATEGORIA_ID_CATE = c.ID_CATE);
     END;
+create or replace PROCEDURE p_agregar_usuario(
+        v_rut NUMBER,
+        v_nombre VARCHAR2,
+        v_apellido VARCHAR2,
+        v_apellido_m VARCHAR2,
+        v_direccion VARCHAR2,
+        v_id_region VARCHAR2,
+        v_id_comu VARCHAR2,
+        v_username VARCHAR2,
+        v_contrasena NUMBER,
+        v_salida out NUMBER
+        
+    )is
+    BEGIN
+        INSERT INTO usuario VALUES (v_rut,v_nombre,v_apellido,v_apellido_m,v_direccion,v_id_region,v_id_comu,v_username,v_contrasena);
+        v_salida:=1;
+        COMMIT;
+    end;
+
+create or replace PROCEDURE p_lista_usuarios(usuarios out SYS_REFCURSOR)
+is
+
+begin
+
+    open usuarios for select * from usuario;
+
+    end;
