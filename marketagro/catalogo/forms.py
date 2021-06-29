@@ -1,8 +1,10 @@
 from django import forms
+from django.db.backends.utils import truncate_name
 from django.db.models import fields
 from django.http import request
 from . models import Categoria, Producto, Tipo_producto, Proveedor, Usuario, Comuna, Region
 
+#Producto form
 class ProductoForm(forms.ModelForm):
     id_prod = forms.CharField(label="Código Producto", required=True, max_length=10, widget=forms.TextInput(
         attrs={
@@ -44,6 +46,7 @@ class ProductoForm(forms.ModelForm):
         model = Producto
         fields = ('id_prod','nom_prod','precio','categoria_id_cate','tipo_producto_id_tipo','proveedor_rut','imagen')
 
+#Usuario form
 class UsuarioForm(forms.ModelForm):
     rut = forms.IntegerField(label="Rut Usuario", required=True, max_value=9, widget=forms.NumberInput(
         attrs={
@@ -70,12 +73,12 @@ class UsuarioForm(forms.ModelForm):
             'class':'form-control'
         }
     ))
-    region_id_region = forms.ModelChoiceField(queryset=Region.objects.all(), label="Region", required=False, widget=forms.Select(
+    region_id_region = forms.ModelChoiceField(queryset=Region.objects.all(), label="Region", required=True, widget=forms.Select(
         attrs={
             'class':'form-control'
         }
     ))
-    comuna_id_comu = forms.ModelChoiceField(queryset=Comuna.objects.all(), label="Comuna", required=False, widget=forms.Select(
+    comuna_id_comu = forms.ModelChoiceField(queryset=Comuna.objects.all(), label="Comuna", required=True, widget=forms.Select(
         attrs={
             'class':'form-control'
         }

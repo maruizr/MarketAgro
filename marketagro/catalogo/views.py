@@ -13,12 +13,6 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def registro(request):
-    
-    return render(
-        request,
-        'usuario/usuario-form.html'
-    )
 def index(request):
     return render(
         request,
@@ -40,7 +34,7 @@ def inicio_sesión(request):
 def form_cr_prod(request):
     data = {
         'form': ProductoForm(),
-        "prod": lista_prod(),
+        "prod": lista_prod()
     }
     return render(request, 'productos/producto-form.html', data)
 
@@ -55,7 +49,7 @@ def lista_prod():
     for i in cursor_out:
         producto.append(        {
             'data':i,
-            'imagen':str(base64.b64encode(i[9].read()),'utf-8')
+            'imagen':str(base64.b64encode(i[7].read()),'utf-8')
         })
 
     return producto
@@ -91,11 +85,13 @@ def agregar_producto(id_prod,nom_prod,precio,categoria,tipo_producto,proveedor,i
     salida = cursor_ex.var(cx_Oracle.NUMBER)
     cursor_ex.callproc('P_AGREGAR_PRODUCTO',[id_prod,nom_prod,precio,categoria,tipo_producto,proveedor,imagen,salida])
 
-def agregar_usuario(rut,nombre,apellido,apellido_m,direccion,id_region,id_comu,username,contrasena):
-    cursor_dj = connection.cursor()
-    cursor_ex = cursor_dj.connection.cursor() 
-    salida = cursor_ex.var(cx_Oracle.NUMBER)
-    cursor_ex.callproc('P_AGREGAR_USUARIO',[rut,nombre,apellido,apellido_m,direccion,id_region,id_comu,username,contrasena])
+def form_cr_usu(request):
+    data = {
+        'form': UsuarioForm(),
+        "prod": lista_usuario()
+    }
+    return render(request, 'usuario/usuario-form.html', data)
+
 def lista_usuario():
 
     cursor_dj = connection.cursor()
@@ -103,14 +99,8 @@ def lista_usuario():
     cursor_out= cursor_dj.connection.cursor() 
     cursor_ex.callproc('P_LISTA_USUARIOS',[cursor_out])
 
-    usuario = []
-    for i in cursor_out:
-        usuario.append(        {
-            'data':i,
-            'imagen':str(base64.b64encode(i[9].read()),'utf-8')
-        })
+    return cursor_out 
 
-    return usuario 
 def create_usuario(request):
     try:
         if request.method == 'POST':
@@ -130,13 +120,20 @@ def create_usuario(request):
                 'usuarios':lista_usuario(),
                 #"msj":"exi_create",
             }
-            return redirect('catalogo')
+            return redirect('index')
     except:
         data = {
                 'usuarios':lista_usuario(),
                 #"msj": "error_create",
 
             }
-        return redirect('registro')
+        return redirect('form_cr_usu')
+
+def agregar_usuario(rut,nombre,apellido,apellido_m,direccion,id_region,id_comu,username,contrasena):
+    cursor_dj = connection.cursor()
+    cursor_ex = cursor_dj.connection.cursor() 
+    salida = cursor_ex.var(cx_Oracle.NUMBER)
+    cursor_ex.callproc('P_AGREGAR_USUARIO',[rut,nombre,apellido,apellido_m,direccion,id_region,id_comu,username,contrasena, salida])
+
 
 

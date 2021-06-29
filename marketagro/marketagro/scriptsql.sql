@@ -523,6 +523,7 @@ create or replace PROCEDURE p_lista_productos(producto out SYS_REFCURSOR)
     FROM producto P INNER JOIN categoria C 
         ON (P.CATEGORIA_ID_CATE = c.ID_CATE);
     END;
+    
 create or replace PROCEDURE p_agregar_usuario(
         v_rut NUMBER,
         v_nombre VARCHAR2,

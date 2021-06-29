@@ -41,7 +41,7 @@ class Tipo_producto(models.Model):
         db_table = 'tipo_producto'
 
     def __str__(self):
-        return str(self.id_tipo)
+        return str(self.nom_tipo)
 
 class Producto(models.Model):
     id_prod = models.IntegerField(primary_key=True)
@@ -68,7 +68,7 @@ class Region(models.Model):
         db_table = 'region'
 
     def __str__(self):
-        return self.id_region
+        return str(self.region)
 
 class Comuna(models.Model):
     id_comu = models.IntegerField(primary_key=True)
@@ -80,7 +80,7 @@ class Comuna(models.Model):
         db_table = 'comuna'
 
     def __str__(self):
-        return self.id_comu
+        return str(self.comuna)
 
 class Usuario(models.Model):
     rut = models.CharField(primary_key=True, max_length=9)
@@ -98,7 +98,7 @@ class Usuario(models.Model):
         db_table = 'usuario'
 
     def __str__(self):
-        return self.rut
+        return str(self.rut)
 
 class Carro(models.Model):
     id_carro = models.IntegerField(primary_key=True)
